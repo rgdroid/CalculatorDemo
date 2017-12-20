@@ -6,13 +6,50 @@
     android:layout_height="match_parent"
     tools:context="com.example.ronny.calculatordemo.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Fredersdorf-Vogelsdorf!"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <HorizontalScrollView
+        android:id="@+id/scv_display"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_display"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_gravity="end"
+            android:text="43+45"
+            android:textSize="30sp" />
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/btn_number_one"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="2dp"
+        android:text="1"
+        app:layout_constraintLeft_toLeftOf="@id/scv_display"
+        app:layout_constraintTop_toBottomOf="@id/scv_display"/>
+
+    <Button
+        android:id="@+id/btn_number_two"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="2dp"
+        android:text="2"
+        app:layout_constraintLeft_toRightOf="@id/btn_number_one"
+        app:layout_constraintTop_toBottomOf="@id/scv_display"/>
+
+    <Button
+        android:id="@+id/btn_number_three"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="2dp"
+        android:text="3"
+        app:layout_constraintLeft_toRightOf="@id/btn_number_two"
+        app:layout_constraintTop_toBottomOf="@id/scv_display"/>
+    />
+
 
 </android.support.constraint.ConstraintLayout>
