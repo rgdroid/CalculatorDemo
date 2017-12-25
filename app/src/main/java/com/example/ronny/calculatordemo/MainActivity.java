@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.javia.arity.Symbols;
+import org.javia.arity.SyntaxException;
+
 public class MainActivity extends AppCompatActivity {
 
     private String mResultString = "";
@@ -17,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_plus;
     private Button btn_equal;
     private Button btn_clear;
+
+    Symbols symbols = new Symbols();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +70,14 @@ public class MainActivity extends AppCompatActivity {
         btn_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mResultString = "Berechnung kommt noch....";
+                try {
+                    Double result = symbols.eval(mResultString);
+                    mResultString = Double.toString(result);
+                } catch (SyntaxException e) {
+                    e.printStackTrace();
+                }
                 tv_display_main.setText(mResultString);
-                mResultString = "";
+                //mResultString = "";
             }
         });
 
