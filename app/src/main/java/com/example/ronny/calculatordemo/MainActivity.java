@@ -14,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_one;
     private Button btn_two;
     private Button btn_three;
+    private Button btn_plus;
+    private Button btn_equal;
+    private Button btn_clear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,36 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mResultString += "3";
+                tv_display_main.setText(mResultString);
+            }
+        });
+
+        btn_plus = (Button) findViewById(R.id.btn_plus);
+        btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mResultString += "+";
+                tv_display_main.setText(mResultString);
+            }
+        });
+
+        btn_equal = (Button) findViewById(R.id.btn_equal);
+        btn_equal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mResultString = "Berechnung kommt noch....";
+                tv_display_main.setText(mResultString);
+                mResultString = "";
+            }
+        });
+
+        btn_clear = (Button) findViewById(R.id.btn_clear);
+        btn_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mResultString.length() > 0) {
+                    mResultString = mResultString.substring(0, mResultString.length() - 1);
+                }
                 tv_display_main.setText(mResultString);
             }
         });
