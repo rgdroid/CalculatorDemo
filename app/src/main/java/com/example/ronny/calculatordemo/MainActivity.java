@@ -14,13 +14,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mResultString = "";
     private TextView tv_display_main;
 
-    private Button btn_one;
-    private Button btn_two;
-    private Button btn_three;
-    private Button btn_plus;
-    private Button btn_equal;
-    private Button btn_clear;
-
     Symbols symbols = new Symbols();
 
     @Override
@@ -30,12 +23,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tv_display_main = findViewById(R.id.tv_display);
 
-        btn_one = (Button) findViewById(R.id.btn_number_one);
-        btn_two = (Button) findViewById(R.id.btn_number_two);
-        btn_three = (Button) findViewById(R.id.btn_number_three);
-        btn_plus = (Button) findViewById(R.id.btn_plus);
-        btn_equal = (Button) findViewById(R.id.btn_equal);
-        btn_clear = (Button) findViewById(R.id.btn_clear);
+        Button btn_one = (Button) findViewById(R.id.btn_number_one);
+        Button btn_two = (Button) findViewById(R.id.btn_number_two);
+        Button btn_three = (Button) findViewById(R.id.btn_number_three);
+        Button btn_plus = (Button) findViewById(R.id.btn_plus);
+        Button btn_equal = (Button) findViewById(R.id.btn_equal);
+        Button btn_clear = (Button) findViewById(R.id.btn_clear);
 
         btn_one.setOnClickListener(this);
         btn_two.setOnClickListener(this);
@@ -43,6 +36,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_plus.setOnClickListener(this);
         btn_equal.setOnClickListener(this);
         btn_clear.setOnClickListener(this);
+
+        btn_clear.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mResultString = "";
+                tv_display_main.setText(mResultString);
+                return true;
+            }
+        });
     }
 
     @Override
