@@ -9,7 +9,7 @@ import android.widget.TextView;
 import org.javia.arity.Symbols;
 import org.javia.arity.SyntaxException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String mResultString = "";
     private TextView tv_display_main;
@@ -31,67 +31,50 @@ public class MainActivity extends AppCompatActivity {
         tv_display_main = findViewById(R.id.tv_display);
 
         btn_one = (Button) findViewById(R.id.btn_number_one);
-        btn_one.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mResultString += "1";
-                tv_display_main.setText(mResultString);
-            }
-        });
-
         btn_two = (Button) findViewById(R.id.btn_number_two);
-        btn_two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mResultString += "2";
-                tv_display_main.setText(mResultString);
-            }
-        });
-
         btn_three = (Button) findViewById(R.id.btn_number_three);
-        btn_three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mResultString += "3";
-                tv_display_main.setText(mResultString);
-            }
-        });
-
         btn_plus = (Button) findViewById(R.id.btn_plus);
-        btn_plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mResultString += "+";
-                tv_display_main.setText(mResultString);
-            }
-        });
-
         btn_equal = (Button) findViewById(R.id.btn_equal);
-        btn_equal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btn_clear = (Button) findViewById(R.id.btn_clear);
+
+        btn_one.setOnClickListener(this);
+        btn_two.setOnClickListener(this);
+        btn_three.setOnClickListener(this);
+        btn_plus.setOnClickListener(this);
+        btn_equal.setOnClickListener(this);
+        btn_clear.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_number_one:
+                mResultString += "1";
+                break;
+            case R.id.btn_number_two:
+                mResultString += "2";
+                break;
+            case R.id.btn_number_three:
+                mResultString += "3";
+                break;
+            case R.id.btn_plus:
+                mResultString += "+";
+                break;
+            case R.id.btn_equal:
                 try {
                     Double result = symbols.eval(mResultString);
                     mResultString = Double.toString(result);
                 } catch (SyntaxException e) {
                     e.printStackTrace();
                 }
-                tv_display_main.setText(mResultString);
-                //mResultString = "";
-            }
-        });
-
-        btn_clear = (Button) findViewById(R.id.btn_clear);
-        btn_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.btn_clear:
                 if (mResultString.length() > 0) {
                     mResultString = mResultString.substring(0, mResultString.length() - 1);
                 }
-                tv_display_main.setText(mResultString);
-            }
-        });
+                break;
+        }
+        tv_display_main.setText(mResultString);
+
     }
-
-
 }
